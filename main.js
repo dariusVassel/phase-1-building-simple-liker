@@ -4,8 +4,24 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const selectHearts = document.querySelectorAll('.like-glyph')
 
-
+for (hearts of selectHearts){
+  hearts.addEventListener('click', e => {
+    console.log(e.target)
+    mimicServerCall()
+      .then(()=> {
+        e.target.classList.add('activated-heart')
+      })
+      .catch((error)=>{
+        alert("We got an ERROR");
+        console.log(error)
+        const errorSelector = document.getElementById('modal')
+        errorSelector.classList.remove('hidden')
+        setTimeout(function(){ errorSelector.classList.add('hidden'); }, 3000);
+      })
+  })
+}
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
